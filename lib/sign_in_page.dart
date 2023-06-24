@@ -17,7 +17,6 @@ class _SignInState extends State<SignIn> {
   final box1 = GetStorage();
   bool loading = false;
 
-  // FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passcontroller = TextEditingController();

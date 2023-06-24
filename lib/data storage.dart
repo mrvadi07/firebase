@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FirabaseCloud extends StatefulWidget {
@@ -10,32 +9,28 @@ class FirabaseCloud extends StatefulWidget {
 }
 
 class _FirabaseCloudState extends State<FirabaseCloud> {
-
-
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-  DocumentReference user = FirebaseFirestore.instance.collection('users').doc('NyjkeSVFddSFlhsPTlxz');
-
+  DocumentReference user = FirebaseFirestore.instance
+      .collection('users')
+      .doc('NyjkeSVFddSFlhsPTlxz');
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
           // user.update({'name':'abc'});
-          user.set({'name':'deep','email':'acjncjc@example.com'});
+          user.set({'name': 'deep', 'email': 'acjncjc@example.com'});
           //user.delete();
         },
       ),
       body: Center(
-        child:
-        Column(
+        child: Column(
           children: [
             FutureBuilder(
               future: user.get(),
               builder: (context, snapshot) {
-                if(snapshot.connectionState== ConnectionState.done){
-
+                if (snapshot.connectionState == ConnectionState.done) {
                   var data = snapshot.data!.data() as Map<String, dynamic>;
                   return Column(
                     children: [
@@ -43,31 +38,14 @@ class _FirabaseCloudState extends State<FirabaseCloud> {
                       Text('${data['email']}'),
                     ],
                   );
-
-
-
-                }
-
-                else {
+                } else {
                   return CircularProgressIndicator();
                 }
-
               },
             )
           ],
         ),
       ),
     );
-
-
-
-
-
-
-
-
-
-
-
   }
 }
